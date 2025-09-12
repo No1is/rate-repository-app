@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
 const AppBar = () => {
   const [user, setUser] = useState(null)
-  const { data, loading, error, refetch } = useQuery(USER, {
+  const { data, loading, refetch } = useQuery(USER, {
       fetchPolicy: 'cache-and-network'
   })
   const authStorage = useAuthStorage()

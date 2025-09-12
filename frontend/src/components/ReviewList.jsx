@@ -57,22 +57,6 @@ const ReviewActions = ({ item, refetch }) => {
         },
     });
 
-    const confirmAlert = () => {
-        Alert.alert('Delete review', 'Are you sure you want to delete this review?', [
-            {
-                text: 'Cancel',
-                onPress: () => console.log('delete action cancelled'),
-                style: 'cancel',
-            },
-            {
-                text: 'Delete',
-                onPress: () => {
-                    DeleteReview({ variables: { id: item.id }});
-                }
-            }
-        ])
-    };
-
     const title = 'Delete review';
     const description = 'Are you sure you want to delete this review?';
     const options = ['CANCEL', 'DELETE']
@@ -135,7 +119,7 @@ const ReviewList = () => {
     
     if (reviews.length === 0) {
         return <Text>No reviews found!</Text>
-    };
+    }
 
     return (
         <FlatList

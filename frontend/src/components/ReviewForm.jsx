@@ -1,5 +1,5 @@
 import { TextInput, Pressable, View, StyleSheet } from 'react-native';
-import { useFormik, yupToFormErrors } from 'formik';
+import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-native';
 import Text from './Text';
 import theme from '../theme';
@@ -84,7 +84,7 @@ const ReviewForm = () => {
             navigate('/');
         } catch (error) {
             console.log(error);
-        };
+        }
         resetForm()
     };
 
