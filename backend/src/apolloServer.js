@@ -33,8 +33,8 @@ const createApolloServer = () => {
     typeDefs,
     persistedQueries: false,
     formatError: apolloErrorFormatter,
-    context: ({ req }) => {
-      const authorization = req.headers.authorization;
+    context: ({ ctx }) => {
+      const authorization = ctx.headers.authorization;
 
       const accessToken = authorization
         ? authorization.split(' ')[1]
