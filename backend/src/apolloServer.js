@@ -1,4 +1,5 @@
-import { ApolloServer, toApolloError, ApolloError } from 'apollo-server';
+import { ApolloServer } from 'apollo-server-koa';
+import { toApolloError, ApolloError } from 'apollo-server-errors';
 import { ValidationError } from 'yup';
 
 import AuthService from './utils/authService.js';
