@@ -1,0 +1,169 @@
+name: CI/CD pipeline
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    types: [ opened, synchronize ]
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency: pages
+
+jobs:
+  backend_ci:
+    name: Backend - lint and test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - run: npm run lint --if-present
+      - run: npm test -- --ci --runInBand --passWithNoTests
+      - name: Notify (backend failed)
+        uses: rjstone/discord-webhook-notify@v2.2.1
+        if: failure()
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: "Sam Meir/No1is"
+          severity: error
+          title: "Backend CI failed"
+          description: "Commit <https://github.com/${{ github.repository }}/commit/${{ github.sha }}> by **${{ github.actor }}**"
+          color: 15158332
+          
+  frontend_ci:
+    name: Frontend - lint and test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint --if-present
+      - name: Test (jest/expo)
+        run: npm test -- --ci --runInBand --passWithNoTests
+        env:
+          CI: true
+      - name: Notify (frontend failed)
+        uses: rjstone/discord-webhook-notify@v2.2.1
+        if: failure()
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: "Sam Meir/No1is"
+          severity: error
+          title: "Frontend CI failed"
+          description: "Commit <https://github.com/${{ github.repository }}/commit/${{ github.sha }}> by **${{ github.actor }}**"
+          color: 15158332
+  build_frontend_web:
+    name: Frontend - build web
+    needs: frontend_ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - name: Export static site
+        run: npx expo export --platform web --output-dir dist
+        env:
+          EXPO_PUBLIC_APOLLO_URI: https://rate-repository-app-uafh.onrender.com/graphql
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+      - name: Notify (frontend build failed)
+        uses: rjstone/discord-webhook-notify@v2.2.1
+        if: failure()
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: "Sam Meir/No1is"
+          severity: error
+          title: "Frontend web build failed"
+          description: "Commit <https://github.com/${{ github.repository }}/commit/${{ github.sha }}> by **${{ github.actor }}**"
+          color: 15158332
+  deploy_frontend_pages:
+    name: Frontend - deploy (github pages)
+    needs: build_frontend_web
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Notify (frontend deployed)
+        uses: rjstone/discord-webhook-notify@v2.2.1
+        if: success()
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: "Sam Meir/No1is"
+          severity: info
+          title: "Frontend deployed to github pages"
+          description: "By **${{ github.actor }}**"
+          color: 3066993
+  deploy_backend_render:
+    name: Backend - deploy (render)
+    needs: backend_ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(toJson(github.event.commits), '#skip')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger render deploy
+        run: curl -fsSL -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+      - name: Notify (backend deployed)
+        uses: rjstone/discord-webhook-notify@v2.2.1
+        if: success()
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: "Sam Meir/No1is"
+          severity: info
+          title: "Backend deploy triggered (Render)"
+          description: "By **${{ github.actor }}**"
+          color: 3066993
+      - name: Notify (backend deploy trigger failed)
+        uses: rjstone/discord-webhook-notify@v2.2.1
+        if: failure()
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: "Sam Meir/No1is"
+          severity: error
+          title: "Backend deploy trigger failed (Render)"
+          description: "Check deploy hook / Render logs"
+          color: 15158332
+  tag_release:
+    name: Tag Release
+    needs: [deploy_backend_render, deploy_frontend_pages]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(toJson(github.event.commits), '#skip')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.75.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          WITH_V: true
+          RELEASE_BRANCHES: main
+          
+          
