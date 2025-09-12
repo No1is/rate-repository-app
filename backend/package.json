@@ -8,11 +8,11 @@
     "start:dev": "nodemon -r esm ./src/index.js",
     "lint": "eslint ./src",
     "test": "jest .",
-    "migrate:make": "knex migrate:make",
-    "migrate:latest": "knex migrate:latest",
+    "migrate:make": "knex --knexfile knexfile.cjs migrate:make",
+    "migrate:latest": "knex --knexfile knexfile.cjs migrate:latest",
     "build": "npm run migrate:latest",
-    "seed:make": "knex seed:make",
-    "seed:run": "knex seed:run"
+    "seed:make": "knex --knexfile knexfile.cjs seed:make",
+    "seed:run": "knex --knexfile knexfile.cjs seed:run"
   },
   "engines": {
     "node": "20.x"
