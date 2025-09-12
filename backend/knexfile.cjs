@@ -10,5 +10,6 @@ module.exports = {
   useNullAsDefault: true,
   migrations: {
     extension: 'cjs'
-  }
+  },
+  seeds: { extension: 'js' }
 };
