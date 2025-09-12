@@ -7,7 +7,7 @@ import {
   GITHUB_API_URL,
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,
-} from '../config';
+} from '../config.js';
 
 const oneHour = 1000 * 60 * 60;
 
