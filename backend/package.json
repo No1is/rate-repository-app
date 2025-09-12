@@ -2,10 +2,11 @@
   "name": "rate-repository-api",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node -r esm ./src/index.js",
-    "start:dev": "nodemon -r esm ./src/index.js",
+    "start": "node ./src/index.js",
+    "start:dev": "nodemon ./src/index.js",
     "lint": "eslint ./src",
     "test": "jest .",
     "migrate:make": "knex migrate:make",
@@ -14,6 +15,7 @@
     "seed:make": "knex seed:make",
     "seed:run": "knex seed:run"
   },
+  "engines": { "node": "20.x"},
   "lint-staged": {
     "src/**/*.js": "eslint",
     "*.{js,json,css,md}": "prettier --write"
