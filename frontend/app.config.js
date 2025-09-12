@@ -25,9 +25,14 @@ export default  {
         }
     },
     web: {
-        "favicon": "./assets/favicon.png"
+        "favicon": "./assets/favicon.png",
+        "output": "single",
+        "bundler": "metro",
+    },
+    experiments: {
+        "baseUrl": "/rate-repository-app"
     },
     extra: {
         uri: process.env.APOLLO_URI,
-    }
+    },
 }
