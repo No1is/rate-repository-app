@@ -10,8 +10,6 @@ const RENDER_PORT = process.env.PORT || 4000;
 
 export const API_PORT = RENDER_PORT
 
-export const APOLLO_PORT = RENDER_PORT
-
 export const JWT_SECRET = process.env.JWT_SECRET;
 
 export const KNEX_CONFIG = {
