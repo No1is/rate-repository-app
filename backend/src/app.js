@@ -44,10 +44,16 @@ app.use(async (ctx, next) => {
 
 app.use(cors());
 
+const root = new Router();
+
+root.get('/health', (ctx) => { ctx.status = 200; ctx.body = 'ok'; })
+root.get('/', (ctx) =>{ ctx.status = 200; ctx.body = 'API is running'; })
+
 const apiRouter = new Router();
 
 apiRouter.use('/api', api.routes());
 
+app.use(root.routes())
 app.use(apiRouter.routes());
 
 app.use((ctx) => {
