@@ -8,4 +8,7 @@ module.exports = {
     filename: FILENAME,
   },
   useNullAsDefault: true,
+  migrations: {
+    extension: 'cjs'
+  }
 };
