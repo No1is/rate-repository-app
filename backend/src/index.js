@@ -10,7 +10,6 @@ const startServer = async () => {
 
   const apolloServer = createApolloServer();
 
-  await apolloServer.start()
   apolloServer.applyMiddleware({ app, path: '/graphql' })
 
   httpServer.listen(API_PORT, '0.0.0.0', () => {
