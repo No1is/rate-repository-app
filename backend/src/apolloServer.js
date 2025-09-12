@@ -3,7 +3,7 @@ import { ValidationError } from 'yup';
 
 import AuthService from './utils/authService';
 import createDataLoaders from './utils/createDataLoaders';
-import logger from './utils/logger';
+import logger from './utils/logger.js';
 import { resolvers, typeDefs } from './graphql/schema';
 
 const apolloErrorFormatter = (error) => {

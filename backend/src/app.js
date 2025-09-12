@@ -7,8 +7,8 @@ import through from 'through2';
 
 import { ApplicationError, NotFoundError } from './errors';
 import createDataLoaders from './utils/createDataLoaders';
-import logger from './utils/logger';
-import api from './api';
+import logger from './utils/logger.js';
+import api from './api/index.js';
 
 const logStream = through((chunk) => {
   logger.info(chunk.toString());

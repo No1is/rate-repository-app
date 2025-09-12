@@ -15,7 +15,9 @@
     "seed:make": "knex --knexfile knexfile.cjs seed:make",
     "seed:run": "knex --knexfile knexfile.cjs seed:run"
   },
-  "engines": { "node": "20.x"},
+  "engines": {
+    "node": "20.x"
+  },
   "lint-staged": {
     "src/**/*.js": "eslint",
     "*.{js,json,css,md}": "prettier --write"
@@ -68,6 +70,7 @@
     "@babel/eslint-parser": "^7.16.5",
     "@babel/preset-env": "^7.8.4",
     "eslint": "^8.6.0",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^25.3.4",
     "husky": "^4.2.3",
     "jest": "^27.4.7",
