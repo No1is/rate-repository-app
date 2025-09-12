@@ -6,11 +6,12 @@ import createApolloServer from './apolloServer.js';
 import app from './app.js';
 
 const startServer = async () => {
-  const httpServer = http.createServer(app.callback());
 
   const apolloServer = createApolloServer();
   await apolloServer.start();
   apolloServer.applyMiddleware({ app, path: '/graphql' })
+
+  const httpServer = http.createServer(app.callback());
 
   httpServer.listen(API_PORT, '0.0.0.0', () => {
     logger.info(`server ready at ${API_PORT}`)
