@@ -13,13 +13,10 @@ const startServer = async () => {
   await apolloServer.start()
   apolloServer.applyMiddleware({ app, path: '/graphql' })
 
-  httpServer.on('request', app.callback());
-
-  await new Promise((resolve) =>
-    httpServer.listen({ port: API_PORT }, resolve),
-  );
-
-  logger.info(`Apollo Server ready at http://localhost:${API_PORT}/graphql`);
+  httpServer.listen(API_PORT, '0.0.0.0', () => {
+    logger.info(`server ready at ${API_PORT}`)
+    logger.info(`Apollo Server ready at ${API_PORT}/graphql`);
+  })
 };
 
 startServer();
