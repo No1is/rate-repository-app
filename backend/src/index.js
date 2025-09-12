@@ -6,7 +6,7 @@ import createApolloServer from './apolloServer.js';
 import app from './app.js';
 
 const startServer = async () => {
-  const httpServer = http.createServer(app);
+  const httpServer = http.createServer(app.callback());
 
   const apolloServer = createApolloServer();
   await apolloServer.start();
