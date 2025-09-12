@@ -31,6 +31,7 @@ const createApolloServer = () => {
   return new ApolloServer({
     resolvers,
     typeDefs,
+    persistedQueries: false,
     formatError: apolloErrorFormatter,
     context: ({ req }) => {
       const authorization = req.headers.authorization;
