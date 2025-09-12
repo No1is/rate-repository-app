@@ -56,8 +56,10 @@ apiRouter.use('/api', api.routes());
 app.use(root.routes())
 app.use(apiRouter.routes());
 
-app.use((ctx) => {
-  throw new NotFoundError(`The path "${ctx.request.path}" is not found`);
-});
-
+app.use(async (ctx, next) => {
+  await next()
+  if (ctx.status === 404) {
+    throw new NotFoundError(`the path "${ctx.request.path}" is not found`)
+  }
+})
 export default app;
