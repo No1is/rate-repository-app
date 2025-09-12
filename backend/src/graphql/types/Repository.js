@@ -2,8 +2,8 @@ import { gql } from 'apollo-server';
 import { get } from 'lodash';
 import * as yup from 'yup';
 
-import githubClient from '../../utils/githubClient';
-import Review from '../../models/Review';
+import githubClient from '../../utils/githubClient.js';
+import Review from '../../models/Review.js';
 
 export const typeDefs = gql`
   type Repository {
