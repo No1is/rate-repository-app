@@ -4,7 +4,7 @@ import { USER } from '../graphql/queries';
 import { useQuery, useMutation } from '@apollo/client';
 import ReviewItem from './ReviewItem';
 import theme from '../theme';
-import { useNavigate } from 'react-router-native';
+import { useNavigate } from '../../router/RouterProvider';
 import { DELETE } from '../graphql/mutations';
 
 const styles = StyleSheet.create({

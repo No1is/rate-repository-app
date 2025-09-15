@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { NativeRouter } from 'react-router-native';
+import { Router } from './router/RouterProvider';
 import { ApolloProvider } from '@apollo/client';
 
 import Main from './src/components/Main';
@@ -13,13 +13,13 @@ const apolloClient = createApolloClient(authStorage);
 const App = () => {
   return (
     <>
-      <NativeRouter>
+      <Router>
         <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
             <Main />
           </AuthStorageContext.Provider>
         </ApolloProvider>
-      </NativeRouter>
+      </Router>
       <StatusBar style="auto" />
     </>
   )

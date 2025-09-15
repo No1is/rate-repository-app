@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-native';
+import { useParams } from '../../router/RouterProvider';
 import RepositoryItem from './RepositoryItem';
 import ReviewItem from './ReviewItem';
 import useRepository from '../hooks/useRepository';

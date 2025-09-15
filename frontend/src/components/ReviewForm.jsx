@@ -1,6 +1,6 @@
 import { TextInput, Pressable, View, StyleSheet } from 'react-native';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-native';
+import { useNavigate } from '../../router/RouterProvider';
 import Text from './Text';
 import theme from '../theme';
 import * as yup from 'yup';

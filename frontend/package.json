@@ -43,6 +43,7 @@
     "react-native": "0.73.6",
     "react-native-paper": "^5.14.5",
     "react-native-web": "~0.19.6",
+    "react-router-dom": "^7.9.1",
     "react-router-native": "^6.30.0",
     "yup": "^1.7.0"
   },

@@ -2,7 +2,7 @@ import React from 'react'
 import { FlatList, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import useRepositories from '../hooks/useRepositories';
-import { Link } from 'react-router-native';
+import { Link } from '../../router/RouterProvider';
 import { useState } from 'react';
 import { Menu, Provider, Icon, Searchbar } from 'react-native-paper';
 import theme from '../theme';

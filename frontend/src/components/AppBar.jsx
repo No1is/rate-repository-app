@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/client';
 import { USER } from '../graphql/queries'
 import useAuthStorage from '../hooks/useAuthStorage';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-native';
+import { useNavigate } from '../../router/RouterProvider';
 
 const styles = StyleSheet.create({
     container: {
