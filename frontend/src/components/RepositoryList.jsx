@@ -133,6 +133,8 @@ const RepositoryList = () => {
       fetchMore();
     };
 
+  const to = (item) => item.id && typeof item.id === 'string'? `/${item.id}` : '/'
+
   return (
     <Provider>
       <FlatList
@@ -141,7 +143,7 @@ const RepositoryList = () => {
         onEndReachedThreshold={0.5}
         ItemSeparatorComponent={ItemSeparator}
         renderItem={({ item } ) => (
-          <Link key={item.id} to={`/${item.id}`}>
+          <Link key={item.id} to={to(item)}>
             <RepositoryItem item={item} />
           </Link>
         )}
