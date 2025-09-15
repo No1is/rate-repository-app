@@ -24,7 +24,7 @@ const AppBarTab = ({ tab }) => {
             case 'My Reviews':
                 return '/my-reviews';
             default:
-                return null
+                return '/'
         }
     }
     return (
