@@ -26,7 +26,7 @@ export default  {
     },
     web: {
         "favicon": "./assets/favicon.png",
-        "output": "static",
+        "output": "single",
         "bundler": "metro",
         "build": {
             "sourceMap": true
