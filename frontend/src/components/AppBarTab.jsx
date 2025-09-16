@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable } from "react-native";
+import { StyleSheet, Pressable, View } from "react-native";
 import Text from './Text';
 import { Link } from '../../router/RouterProvider';
 import theme from "../theme";
@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
         color: 'white',
         padding: 15,
         fontWeight: theme.fontWeights.bold
+    },
+    tabContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
     }
 })
 const AppBarTab = ({ tab, onPress }) => {
@@ -29,15 +34,19 @@ const AppBarTab = ({ tab, onPress }) => {
     }
     if (onPress) {
         return (
-            <Pressable onPress={onPress}>
-                <Text style={styles.tab}>{tab}</Text>
-            </Pressable>
+            <View style={styles.tabContainer}>
+                <Pressable onPress={onPress}>
+                    <Text style={styles.tab}>{tab}</Text>
+                </Pressable>
+            </View>
         );
     }
     return (
-        <Link to={link(tab)}>
-            <Text style={styles.tab}>{tab}</Text>
-        </Link>
+        <View style={styles.tabContainer}>
+            <Link to={link(tab)}>
+                <Text style={styles.tab}>{tab}</Text>
+            </Link>
+        </View>
     );
 };
 
