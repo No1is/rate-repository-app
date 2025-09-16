@@ -12,6 +12,9 @@ export default  {
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
     },
+    experiments: {
+      "baseUrl": "/rate-repository-app"
+    },
     assetBundlePatterns: [
         "**/*"
     ],
@@ -28,7 +31,6 @@ export default  {
         "favicon": "./assets/favicon.png",
         "output": "single",
         "bundler": "metro",
-        "baseUrl": "/rate-repository-app",
         "build": {
             "sourceMap": true
         }
