@@ -86,7 +86,7 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
       - run: npm ci
       - name: Export static site
-        run: npx expo export --platform web --output-dir dist --clear && node patch-index.js
+        run: npx expo export --platform web --output-dir dist --clear
         env:
           EXPO_PUBLIC_APOLLO_URI: https://rate-repository-app-uafh.onrender.com/graphql
       - name: add .nojekyll to allow _expo folder
