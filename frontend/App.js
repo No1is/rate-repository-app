@@ -18,7 +18,6 @@ console.log('app mounted', {
 const App = () => {
   return (
     <>
-      <div style={{position: 'absolute', top: 0, left: 0, zIndex: 9999, background: 'yellow'}}>Hello World</div>
       <Router basename="/rate-repository-app">
         <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
