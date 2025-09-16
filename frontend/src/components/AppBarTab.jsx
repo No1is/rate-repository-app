@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     tab: {
         color: 'white',
         padding: 15,
-        fontWeight: theme.fontWeights.bold
+        fontWeight: theme.fontWeights.bold,
+        paddingBottom: 22, // Add extra space below tab text
     },
     tabContainer: {
         alignItems: 'center',

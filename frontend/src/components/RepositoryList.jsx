@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { FlatList, View, StyleSheet, TouchableOpacity, Dimensions, Platform } from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import useRepositories from '../hooks/useRepositories';
 import { Link } from '../../router/RouterProvider';
@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       padding: 16,
       borderRadius: 4,
-      width: Dimensions.get('window').width * 0.5,
+      width: (Platform.OS === 'web' && Dimensions.get('window').width < 600)
+        ? Dimensions.get('window').width * 0.85
+        : Dimensions.get('window').width * 0.5,
       elevation: 5,
     },
     selectItem: {
