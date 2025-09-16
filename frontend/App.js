@@ -10,6 +10,10 @@ import AuthStorageContext from './src/contexts/AuthStorageContext';
 const authStorage = new AuthStorage();
 const apolloClient = createApolloClient(authStorage);
 
+console.log('app mounted', { 
+  env: process.env.EXPO_PUBLIC_APOLLO_URI,
+})
+
 const App = () => {
   return (
     <>

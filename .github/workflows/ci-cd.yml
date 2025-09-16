@@ -104,6 +104,11 @@ jobs:
           echo "OK: base path applied"
       - name: Show resolved Expo config
         run: npx expo config --json | node -e "process.stdin.on('data',d=>{const j=JSON.parse(d);console.log(JSON.stringify({experiments:j.experiments, web:j.web},null,2))})"
+      - name: Assert root div exists
+        run: |
+          if ! grep -q '<div id="root"' dist/index.html; then
+            echo "ERROR: <div id=\"root\"> missing"; exit 1;
+          fi
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
