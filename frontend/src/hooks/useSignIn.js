@@ -4,7 +4,7 @@ import useAuthStorage from './useAuthStorage';
 
 const useSignIn = () => {
     const authStorage = useAuthStorage();
-    const [authenticate, result] = useMutation(AUTHENTICATE, {
+    const [authenticate] = useMutation(AUTHENTICATE, {
         onError: (error) => {
             const messages = error.graphQLErrors.map(e => e.message).join('\n')
             console.log(messages)
@@ -16,7 +16,7 @@ const useSignIn = () => {
         return response
     };
 
-    return [signIn, result, authStorage];
+    return [signIn, authStorage];
 };
 
 export default useSignIn;

@@ -51,7 +51,7 @@ const initialValues = {
 };
 
 const SignIn = () => {
-    const [signIn, authStorage] = useSignIn()
+    const [signIn, authStorage] = useSignIn();
     const apolloClient = useApolloClient()
     const navigate = useNavigate()
     

@@ -68,7 +68,7 @@ const initialValues = {
 const SignUpForm = () => {
     const apolloClient = useApolloClient();
     const navigate = useNavigate();
-    const [signIn, authStorage] = useSignIn();
+  const [signIn, authStorage] = useSignIn();
     const [create] = useSignUp();
 
     const onSubmit = async (values, { resetForm }) => {

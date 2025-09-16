@@ -19,8 +19,6 @@ const App = () => {
   return (
     <>
   <Router>
-        {/* Debug: Test if Router renders */}
-        <div style={{position: 'absolute', top: 0, left: 0, zIndex: 9999, background: 'yellow'}}>Hello World from Router</div>
         <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
             <Main />
