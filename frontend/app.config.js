@@ -28,6 +28,7 @@ export default  {
         "favicon": "./assets/favicon.png",
         "output": "single",
         "bundler": "metro",
+        "baseUrl": "/rate-repository-app",
         "build": {
             "sourceMap": true
         }
