@@ -93,6 +93,17 @@ jobs:
         run: touch dist/.nojekyll
       - name: SPA 404 fallback
         run: cp dist/index.html dist/404.html
+      - name: Assert base path applied
+        run: |
+          if grep -q 'src="/_expo/' dist/index.html; then
+            echo "ERROR: index.html still points to domain-root /_expo"; exit 1;
+          fi
+          if ! grep -q 'src="/rate-repository-app/_expo/' dist/index.html; then
+            echo "ERROR: index.html missing /rate-repository-app base path"; exit 1;
+          fi
+          echo "OK: base path applied"
+      - name: Show resolved Expo config
+        run: npx expo config --json | node -e "process.stdin.on('data',d=>{const j=JSON.parse(d);console.log(JSON.stringify({experiments:j.experiments, web:j.web},null,2))})"
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -13,7 +13,8 @@ export default  {
         "backgroundColor": "#ffffff"
     },
     experiments: {
-      "basePath": "/rate-repository-app"
+      "basePath": "/rate-repository-app",
+      "baseUrl": "/rate-repository-app"
     },
     assetBundlePatterns: [
         "**/*"
