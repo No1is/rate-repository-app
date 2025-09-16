@@ -26,11 +26,11 @@ export default  {
     },
     web: {
         "favicon": "./assets/favicon.png",
-        "output": "single",
+        "output": "static",
         "bundler": "metro",
-    },
-    experiments: {
-        "baseUrl": "/rate-repository-app"
+        "build": {
+            "sourceMap": true
+        }
     },
     extra: {
         uri: process.env.APOLLO_URI,
