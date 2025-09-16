@@ -1,7 +1,7 @@
 import { HashRouter, Link, Navigate, Routes, Route, useNavigate, useParams } from 'react-router-dom';
 
-const Router = ({ children, basename = '/rate-repository-app' }) => (
-    <HashRouter basename={basename}>
+const Router = ({ children }) => (
+    <HashRouter>
         {children}
     </HashRouter>
 )
