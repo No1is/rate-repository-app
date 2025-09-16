@@ -1,5 +1,4 @@
-import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
-import Text from './Text';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import theme from '../theme'
 import AppBarTab from './AppBarTab'
