@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from '../../router/RouterProvider';
 import RepositoryList from './RepositoryList'
 import AppBar from './AppBar'
 import SignIn from './SignIn'
-import RepositorView from './RepositoryView'
+import RepositoryView from './RepositoryView'
 import ReviewForm from './ReviewForm'
 import SignUpForm from './SignUpForm'
 import theme from '../theme'
@@ -24,7 +24,7 @@ const Main = () => {
             <Routes>
                 <Route path="/" element={<RepositoryList />} />
                 <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/:id" element={<RepositorView />} />
+                <Route path="/:id" element={<RepositoryView />} />
                 <Route path='/add-review' element={<ReviewForm />} />
                 <Route path='/my-reviews' element={<ReviewList />} />
                 <Route path='/sign-up' element={<SignUpForm />} />
