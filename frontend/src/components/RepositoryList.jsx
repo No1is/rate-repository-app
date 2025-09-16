@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
       borderRadius: 4,
     },
     menu: {
-      left: '50%',
       backgroundColor: '#fff',
       padding: 16,
       borderRadius: 4,
@@ -35,6 +34,9 @@ const styles = StyleSheet.create({
         ? Dimensions.get('window').width * 0.85
         : Dimensions.get('window').width * 0.5,
       elevation: 5,
+      ...(Platform.OS === 'web' && Dimensions.get('window').width < 600
+        ? { alignSelf: 'center' }
+        : { left: '50%' }),
     },
     selectItem: {
       fontStyle: 'italic',
