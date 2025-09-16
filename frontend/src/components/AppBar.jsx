@@ -62,10 +62,8 @@ const AppBar = () => {
         ? (
           <>
             <AppBarTab tab={'Create a review'} />
-            <AppBarTab tab={'My Reviews'} /> 
-            <Pressable style={{ padding: 15 }} onPress={logOut}>
-              <Text style={styles.signOut}>Log Out</Text>
-            </Pressable>
+            <AppBarTab tab={'My Reviews'} />
+            <AppBarTab tab={'Log Out'} onPress={logOut} />
           </>
         ): (
           <>

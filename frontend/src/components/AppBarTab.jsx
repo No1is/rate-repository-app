@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import Text from './Text';
 import { Link } from '../../router/RouterProvider';
 import theme from "../theme";
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         fontWeight: theme.fontWeights.bold
     }
 })
-const AppBarTab = ({ tab }) => {
+const AppBarTab = ({ tab, onPress }) => {
     const link = (tab) => {
         switch (tab) {
             case 'Repositories':
@@ -27,11 +27,16 @@ const AppBarTab = ({ tab }) => {
                 return '/'
         }
     }
+    if (onPress) {
+        return (
+            <Pressable onPress={onPress}>
+                <Text style={styles.tab}>{tab}</Text>
+            </Pressable>
+        );
+    }
     return (
         <Link to={link(tab)}>
-            <Text style={styles.tab}>
-                {tab}
-            </Text>
+            <Text style={styles.tab}>{tab}</Text>
         </Link>
     );
 };
