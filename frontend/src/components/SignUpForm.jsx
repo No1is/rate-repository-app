@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         paddingVertical: 8,
         paddingHorizontal: 12,
-        font: theme.fontSizes.subheading,
+        fontSize: theme.fontSizes.subheading,
         backgroundColor: 'white',
     },
     inputError: {
