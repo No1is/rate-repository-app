@@ -89,6 +89,8 @@ jobs:
         run: npx expo export --platform web --output-dir dist --clear
         env:
           EXPO_PUBLIC_APOLLO_URI: https://rate-repository-app-uafh.onrender.com/graphql
+      - name: add .nojekyll to allow _expo folder
+        run: touch dist/.nojekyll
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
