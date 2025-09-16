@@ -21,8 +21,6 @@ const Main = () => {
     return (
         <View style={styles.container}>
             <AppBar />
-            {/* Debug: Test if Main renders */}
-            <div style={{position: 'absolute', top: 0, left: 0, zIndex: 9999, background: 'yellow'}}>Hello World from Main</div>
             <Routes>
                 <Route path="/" element={<RepositoryList />} />
                 <Route path="/sign-in" element={<SignIn />} />
