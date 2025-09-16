@@ -13,7 +13,7 @@ const apolloClient = createApolloClient(authStorage);
 const App = () => {
   return (
     <>
-      <Router>
+      <Router basename="/rate-repository-app">
         <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
             <Main />
